@@ -53,4 +53,6 @@ function openArticle(event) {
 navItems.click((event) => {
     let category = event.target.id;
     getNews(category);
+    navItems.removeClass('active');
+    $(event.target).addClass('active');
 });

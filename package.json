@@ -1,0 +1,25 @@
+{
+  "name": "news-app",
+  "version": "0.1.0",
+  "description": "A simple news reader app.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pawkw/news-app.git"
+  },
+  "keywords": [
+    "electron"
+  ],
+  "author": "Peter Weston",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pawkw/news-app/issues"
+  },
+  "homepage": "https://github.com/pawkw/news-app#readme",
+  "dependencies": {
+    "electron": "^5.0.4"
+  }
+}

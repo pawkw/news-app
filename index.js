@@ -2,6 +2,7 @@ const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('030aa2c7342745329663e1b2853e57cf');
 const $ = require('jquery');
 let navItems = $('.nav-group-item');
+let articles = null;
 
 getNews('business');
 
@@ -12,7 +13,7 @@ function getNews(category) {
         country: 'ca',
     })
         .then((results) => {
-            console.log("Results: ", results);
+            articles = results.articles;
             showNews(results.articles);
         })
         .catch((err) => {
@@ -24,7 +25,7 @@ function showNews(allNews) {
     $('#news-list').html('');
     $('#news-list').append(`<!-- search bar starts here-->
         <li class="list-group-header">
-            <input class="form-control" type="text" value="" placeholder="Search for news">
+            <input class="form-control" type="text" value="" placeholder="Search for news" onChange="search(this)">
         </li>
         <!-- search bar ends here -->`);
     allNews.forEach(news => {
@@ -56,3 +57,18 @@ navItems.click((event) => {
     navItems.removeClass('active');
     $(event.target).addClass('active');
 });
+
+function search(input) {
+    let query = escapeHtml($(input).val());
+    let filteredArticles = articles.filter((item) => item.title.toLowerCase().includes(query.toLowerCase()));
+    showNews(filteredArticles);
+}
+
+function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }

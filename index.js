@@ -21,7 +21,7 @@ function showNews(allNews) {
                 <img class="img-circle media-object pull-left" src="${news.urlToImage ? news.urlToImage : null}" width="50"
                     height="50">
                 <div class="media-body">
-                    <strong><a href="${news.url}" >${news.title}</a></strong>
+                    <strong><a href="${news.url}" onclick="openArticle(event)">${news.title}</a></strong>
                     <div>
                         <span class="">${news.publishedAt}</span>
                         <span class="pull-right">Author: ${news.author}</span>
@@ -31,4 +31,10 @@ function showNews(allNews) {
             </li>`;
         $('#news-list').append(singleNews);
     });
+}
+
+function openArticle(event) {
+    event.preventDefault();
+    let link = event.target.href;
+    window.open(link);
 }
